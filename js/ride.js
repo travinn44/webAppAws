@@ -68,9 +68,8 @@ var quotes = {
         // getWeather(pickupLocation, unicorn)
         var randomIndex = Math.floor(Math.random() * quotes.length);
         var randomQuote = quotes[randomIndex];
-        if
         displayUpdate(randomQuote);
-        var audioFile = quoteAudioMap[randomQuote];
+        var audioFile = quotes[randomQuote];
         if (audioFile) {
             playAudio(audioFile);
         }
