@@ -13,8 +13,8 @@ var quotes = [
 var audio = [
     "speech/ella.mp3",
     "speech/christina.mp3",
-    "speech/lewis.mp3",
-    "speech/jennifer.mp3"
+    "speech/lewus.mp3",
+    "speech/jenifer.mp3"
 ];
 
 
