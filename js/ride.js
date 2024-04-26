@@ -40,29 +40,32 @@ var quotes = [
                 }
             }),
             contentType: 'application/json',
-            success: result => completeRequest(result, pickupLocation),
+            success: function(result) {
+                completeRequest(result, pickupLocation);
+    
+                // Display a popup with a random quote
+                var popup = document.getElementById('popup');
+    
+                // Select a random quote
+                var randomIndex = Math.floor(Math.random() * quotes.length);
+                var randomQuote = quotes[randomIndex];
+    
+                // Set the text of the popup to the random quote
+                popup.textContent = randomQuote;
+    
+                // Display the popup
+                popup.style.display = 'block';
+    
+                // Close the popup after 3 seconds
+                setTimeout(function() {
+                    popup.style.display = 'none';
+                }, 3000);
+            },
             error: function ajaxError(jqXHR, textStatus, errorThrown) {
                 console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
                 console.error('Response: ', jqXHR.responseText);
                 alert('An error occurred when requesting your unicorn:\n' + jqXHR.responseText);
             }
-                var popup = document.getElementById('popup');
-              
-                // Select a random quote
-                var randomIndex = Math.floor(Math.random() * quotes.length);
-                var randomQuote = quotes[randomIndex];
-              
-                // Set the text of the popup to the random quote
-                popup.textContent = randomQuote;
-              
-                // Display the popup
-                popup.style.display = 'block';
-              
-                // Close the popup after 3 seconds
-                setTimeout(function() {
-                  popup.style.display = 'none';
-                }, 3000);
-              });
         });
     }
 
