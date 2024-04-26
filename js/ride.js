@@ -4,18 +4,18 @@ var WildRydes = window.WildRydes || {};
 WildRydes.map = WildRydes.map || {};
 let map;
 
-var quotes = {[
+var quotes = [
     "Laugh and the world laughs with you. Weep and you weep alone for the sad old earth must borrow its mirth, but has trouble enough on its own. — Ella Wheeler Wilcox",
     "Better by far you should forget and smile Than that you should remember and be sad. — Christina Rossetti",
     "In the end… We only regret the chances we didn’t take. — Lewis Carroll",
     "There are no regrets in life, just lessons. — Jennifer Aniston"
-]};
-var audio = {[
+];
+var audio = [
     "speech/ella.mp3",
     "speech/christina.mp3",
     "speech/lewis.mp3",
     "speech/jennifer.mp3"
-]};
+];
 
 
 (function rideScopeWrapper($) {
