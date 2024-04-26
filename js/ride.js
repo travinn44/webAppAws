@@ -4,12 +4,13 @@ var WildRydes = window.WildRydes || {};
 WildRydes.map = WildRydes.map || {};
 let map;
 
-var quotes = [
-    "Laugh and the world laughs with you. Weep and you weep alone for the sad old earth must borrow its mirth, but has trouble enough on its own. — Ella Wheeler Wilcox",
-    "Better by far you should forget and smile Than that you should remember and be sad. — Christina Rossetti",
-    "In the end… We only regret the chances we didn’t take. — Lewis Carroll",
-    "There are no regrets in life, just lessons. — Jennifer Aniston",
-  ];
+var quotes = {
+    "Laugh and the world laughs with you. Weep and you weep alone for the sad old earth must borrow its mirth, but has trouble enough on its own. — Ella Wheeler Wilcox": "speech/ella.mp3",
+    "Better by far you should forget and smile Than that you should remember and be sad. — Christina Rossetti": "speech/christina.mp3",
+    "In the end… We only regret the chances we didn’t take. — Lewis Carroll": "speech/lewis.mp3",
+    "There are no regrets in life, just lessons. — Jennifer Aniston": "speech/jennifer.mp3"
+};
+
 
 (function rideScopeWrapper($) {
     var authToken;
@@ -50,27 +51,6 @@ var quotes = [
         });
     }
     
-    function displayRandomPopup() {
-        // Select a random quote
-        var randomIndex = Math.floor(Math.random() * quotes.length);
-        var randomQuote = quotes[randomIndex];
-    
-        // Create popup element
-        const popup = document.createElement('div');
-        popup.classList.add('popup');
-        popup.textContent = randomQuote;
-    
-        // Append popup to the body
-        document.body.appendChild(popup);
-    
-        // Display popup
-        popup.style.display = 'block';
-    
-        // Close popup after 3 seconds (optional)
-        setTimeout(() => {
-            popup.style.display = 'none';
-        }, 3000);
-    }
 
     //  completeRequest
     //      a Unicorn has been dispatched to your location
@@ -88,7 +68,12 @@ var quotes = [
         // getWeather(pickupLocation, unicorn)
         var randomIndex = Math.floor(Math.random() * quotes.length);
         var randomQuote = quotes[randomIndex];
+        if
         displayUpdate(randomQuote);
+        var audioFile = quoteAudioMap[randomQuote];
+        if (audioFile) {
+            playAudio(audioFile);
+        }
         animateArrival(function animateCallback() {
             displayUpdate(unicorn.Name + ' has arrived. Giddy up!', unicorn.Color);
             WildRydes.map.unsetLocation();
@@ -96,6 +81,10 @@ var quotes = [
             $('#request').prop('disabled', 'disabled');
             $('#request').text('Set Pickup');
         });
+    }
+    function playAudio(audioFilePath) {
+        var audio = new Audio(audioFilePath);
+        audio.play();
     }
 
     // Register click handler for #request button
