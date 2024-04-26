@@ -75,7 +75,7 @@ var audio = [
         var randomIndex = Math.floor(Math.random() * quotes.length);
         var randomQuote = quotes[randomIndex];
         displayUpdate(randomQuote);
-        var audioFile = randomIndex;
+        var audioFile = audio[randomIndex];
         if (audioFile) {
             playAudio(audioFile);
         }
