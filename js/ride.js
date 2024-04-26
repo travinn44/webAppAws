@@ -4,6 +4,13 @@ var WildRydes = window.WildRydes || {};
 WildRydes.map = WildRydes.map || {};
 let map;
 
+var quotes = [
+    "Quote 1",
+    "Quote 2",
+    "Quote 3",
+    "Quote 4",
+  ];
+
 (function rideScopeWrapper($) {
     var authToken;
     WildRydes.authToken.then(function setAuthToken(token) {
@@ -127,6 +134,25 @@ let map;
             }
         }
     });
+
+    document.getElementById('#request').addEventListener('click', function() {
+        var popup = document.getElementById('popup');
+      
+        // Select a random quote
+        var randomIndex = Math.floor(Math.random() * quotes.length);
+        var randomQuote = quotes[randomIndex];
+      
+        // Set the text of the popup to the random quote
+        popup.textContent = randomQuote;
+      
+        // Display the popup
+        popup.style.display = 'block';
+      
+        // Close the popup after 3 seconds
+        setTimeout(function() {
+          popup.style.display = 'none';
+        }, 3000);
+      });
 
     //  handlePickupChanged
     //      enable the Pickup button and set text to Request Unicorn
