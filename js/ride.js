@@ -135,7 +135,7 @@ var quotes = [
         }
     });
 
-    document.getElementById('#request').addEventListener('click', function() {
+    document.getElementById('request').addEventListener('click', function() {
         var popup = document.getElementById('popup');
       
         // Select a random quote
