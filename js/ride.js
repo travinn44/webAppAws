@@ -40,32 +40,13 @@ var quotes = [
                 }
             }),
             contentType: 'application/json',
-            success: function(result) {
-                completeRequest(result, pickupLocation);
-    
-                // Display a popup with a random quote
-                var popup = document.getElementById('popup');
-    
-                // Select a random quote
-                var randomIndex = Math.floor(Math.random() * quotes.length);
-                var randomQuote = quotes[randomIndex];
-    
-                // Set the text of the popup to the random quote
-                popup.textContent = randomQuote;
-    
-                // Display the popup
-                popup.style.display = 'block';
-    
-                // Close the popup after 3 seconds
-                setTimeout(function() {
-                    popup.style.display = 'none';
-                }, 3000);
-            },
+            success: result => completeRequest(result, pickupLocation),
             error: function ajaxError(jqXHR, textStatus, errorThrown) {
                 console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
                 console.error('Response: ', jqXHR.responseText);
                 alert('An error occurred when requesting your unicorn:\n' + jqXHR.responseText);
             }
+            
         });
     }
 
@@ -155,6 +136,34 @@ var quotes = [
         }
     });
 
+    function fetchRideDetails() {
+        // Make API request
+        fetch('https://at75dajdcb.execute-api.us-east-2.amazonaws.com/prod/ride')
+            .then(response => response.json())
+            .then(data => {
+                // Extract message from API response
+                const message = data.Message;
+    
+                // Create popup element
+                const popup = document.createElement('div');
+                popup.classList.add('popup');
+                popup.textContent = message;
+    
+                // Append popup to the body
+                document.body.appendChild(popup);
+    
+                // Display popup
+                popup.style.display = 'block';
+    
+                // Close popup after 3 seconds (optional)
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 3000);
+            })
+            .catch(error => {
+                console.error('Error fetching ride details:', error);
+            });
+    }
 
 
     //  handlePickupChanged
