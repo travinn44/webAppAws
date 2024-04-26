@@ -5,10 +5,10 @@ WildRydes.map = WildRydes.map || {};
 let map;
 
 var quotes = [
-    "Quote 1",
-    "Quote 2",
-    "Quote 3",
-    "Quote 4",
+    "Laugh and the world laughs with you. Weep and you weep alone for the sad old earth must borrow its mirth, but has trouble enough on its own. — Ella Wheeler Wilcox",
+    "Better by far you should forget and smile Than that you should remember and be sad. — Christina Rossetti",
+    "In the end… We only regret the chances we didn’t take. — Lewis Carroll",
+    "There are no regrets in life, just lessons. — Jennifer Aniston",
   ];
 
 (function rideScopeWrapper($) {
@@ -86,7 +86,9 @@ var quotes = [
         console.log(pickupLocation);
         //  get the local weather, find nearby restaurants, movies
         // getWeather(pickupLocation, unicorn)
-
+        var randomIndex = Math.floor(Math.random() * quotes.length);
+        var randomQuote = quotes[randomIndex];
+        displayUpdate(randomQuote);
         animateArrival(function animateCallback() {
             displayUpdate(unicorn.Name + ' has arrived. Giddy up!', unicorn.Color);
             WildRydes.map.unsetLocation();
